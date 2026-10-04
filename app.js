@@ -1,17 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
 const db = mysql.createConnection({
-host: 'localhost',
-user: 'root',
-password: '',
-database: 'student_management'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'student_management'
 });
 db.connect((err) => {
-if (err) {
-console.error('Database connection failed:', err);
-return;
-}
+    if (err) {
+    console.error('Database connection failed:', err);
+    return;
+    }
 console.log('Connected to MySQL');
 });
 
@@ -98,4 +99,41 @@ students: results
 });
 }
 );
+});
+
+// Delete Student Route
+app.post('/students/delete/:id', (req, res) => {
+  const studentId = req.params.id;
+  const sql = 'DELETE FROM students WHERE id = ?';
+
+  db.query(sql, [studentId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error deleting student record');
+    }
+    res.redirect('/');
+  });
+});
+
+app.get('/students/edit/:id', (req, res) => {
+  const sql = 'SELECT * FROM students WHERE id = ?';
+  db.query(sql, [req.params.id], (err, results) => {
+    if (err || results.length === 0) {
+      return res.status(404).send('Student not found');
+    }
+    res.render('edit', { student: results[0] });
+  });
+});
+
+app.post('/students/edit/:id', (req, res) => {
+  const { student_id, first_name, last_name, course, year_level, email } = req.body;
+  const sql = 'UPDATE students SET student_id = ?, first_name = ?, last_name = ?, course = ?, year_level = ?, email = ? WHERE id = ?';
+  
+  db.query(sql, [student_id, first_name, last_name, course, year_level, email, req.params.id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error updating student record');
+    }
+    res.redirect('/');
+  });
 });

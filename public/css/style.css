@@ -1,0 +1,106 @@
+/* General Layout & Fonts */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #1e3a8a;
+  margin-top: 0;
+}
+
+/* Action Bar: Search & Add Button */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"] {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border-color: #2563eb;
+}
+
+button[type="submit"] {
+  background-color: #475569;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #334155;
+}
+
+/* Data Table */
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+  background-color: #1e3a8a;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+tr:hover {
+  background-color: #f1f5f9;
+}
